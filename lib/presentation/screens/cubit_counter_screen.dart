@@ -22,12 +22,16 @@ class _CoubitCounterView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final counterState = context.watch<CounterCubit>().state; // Like provider
+    // final counterState = context.watch<CounterCubit>().state; // Like provider
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-            'Cubit Counter: ${counterState.transactionCount} transactions.'),
+        title: (context.select((CounterCubit value) {
+          return Text(
+              'Cubit Counter: ${value.state.transactionCount} transactions.');
+        })),
+        // title: Text(
+        //     'Cubit Counter: ${counterState.transactionCount} transactions.'),
         actions: [
           IconButton(
               onPressed: () {
@@ -43,6 +47,8 @@ class _CoubitCounterView extends StatelessWidget {
             current.counter !=
             previous
                 .counter, // To render only when the new value is diferent than the previou
+
+        // This is no needed when using equatable
         builder: (context, state) {
           return Text('Counter value: ${state.counter}');
         },
