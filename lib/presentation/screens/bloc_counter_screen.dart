@@ -60,7 +60,8 @@ class BlocCounterView extends StatelessWidget {
         FloatingActionButton(
             heroTag: '3',
             child: const Text('+1'),
-            onPressed: () => increaseCounterBy(context))
+            // onPressed: () => increaseCounterBy(context))
+            onPressed: () => context.read<CounterBloc>().increaseBy())
       ]),
     );
   }
