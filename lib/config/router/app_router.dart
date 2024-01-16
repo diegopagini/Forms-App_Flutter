@@ -18,4 +18,8 @@ final appRouter = GoRouter(routes: [
     path: '/new-user',
     builder: (context, state) => const RegisterScreen(),
   ),
+  GoRoute(
+    path: '/new-user-cubit',
+    builder: (context, state) => const RegisterScreenCubit(),
+  ),
 ]);

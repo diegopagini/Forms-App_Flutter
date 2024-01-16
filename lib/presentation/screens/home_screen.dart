@@ -31,6 +31,12 @@ class HomeScreen extends StatelessWidget {
             trailing: const Icon(Icons.arrow_forward_ios_rounded),
             onTap: () => context.push('/new-user'),
           ),
+          ListTile(
+            title: const Text('Nuevo Usuario con Cubit'),
+            subtitle: const Text('Manejo de formularios'),
+            trailing: const Icon(Icons.arrow_forward_ios_rounded),
+            onTap: () => context.push('/new-user-cubit'),
+          ),
         ],
       ),
     );
