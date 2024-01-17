@@ -13,6 +13,7 @@ class RegisterFormCubit extends Cubit<RegisterFormState> {
         formStatus: FormStatus.validating,
         username: Username.dirty(state.username.value),
         password: Password.dirty(state.password.value),
+        email: Email.dirty(state.email.value),
         isValid: Formz.validate([state.username, state.password])));
 
     print('Submit: $state');
@@ -22,19 +23,32 @@ class RegisterFormCubit extends Cubit<RegisterFormState> {
     final username = Username.dirty(value);
     emit(state.copyWith(
         username: username,
-        isValid: Formz.validate(
-            [username, state.password]))); // To validate the entire form.
+        isValid: Formz.validate([
+          username,
+          state.password,
+          state.email
+        ]))); // To validate the entire form.
   }
 
   void emailChanged(String value) {
-    emit(state.copyWith(email: value));
+    final email = Email.dirty(value);
+    emit(state.copyWith(
+        email: email,
+        isValid: Formz.validate([
+          email,
+          state.username,
+          state.password
+        ]))); // To validate the entire form.
   }
 
   void passwordChanged(String value) {
     final password = Password.dirty(value);
     emit(state.copyWith(
         password: password,
-        isValid: Formz.validate(
-            [password, state.username]))); // To validate the entire form.
+        isValid: Formz.validate([
+          password,
+          state.username,
+          state.email
+        ]))); // To validate the entire form.
   }
 }
